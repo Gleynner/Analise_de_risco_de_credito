@@ -1,5 +1,9 @@
 # 💳 Análise de Risco de Crédito com Machine Learning
 
+<p align="center">
+  <img src="assets/Score-de-credito.png" width="670"/>
+</p>
+
 
 <br>
 
