@@ -1,5 +1,8 @@
 # 💳 Análise de Risco de Crédito com Machine Learning
 
+
+<br>
+
 ## 📌 Visão Geral
 
 A análise de risco de crédito desempenha papel fundamental no setor financeiro, auxiliando instituições na tomada de decisão sobre concessão de crédito e mitigação de perdas associadas à inadimplência. Em um cenário econômico desafiador, marcado pelo aumento do endividamento das famílias brasileiras, restrição de crédito e elevação do risco de inadimplência, torna-se cada vez mais importante o desenvolvimento de soluções analíticas capazes de identificar clientes com maior probabilidade de default de forma eficiente e operacionalmente viável.
@@ -8,12 +11,15 @@ Nesse contexto, instituições financeiras e fintechs buscam utilizar modelos es
 
 A capacidade de antecipar comportamentos de inadimplência tornou-se um diferencial estratégico, permitindo que as instituições ajustem políticas de crédito, limites, taxas e estratégias de mitigação de risco de acordo com o perfil de cada cliente.
 
+<br>
 
 ## 🎯 Objetivo do Projeto
 
 O objetivo deste projeto é desenvolver um modelo preditivo de Machine Learning capaz de prever a probabilidade de inadimplência (default) de clientes a partir de informações financeiras, cadastrais e comportamentais.
 
 Para alcançar o objetivo proposto, foi desenvolvido um projeto completo de análise de risco de crédito, contemplando etapas de análise exploratória, tratamento e preparação dos dados, engenharia de atributos, seleção de variáveis, balanceamento de classes, otimização de hiperparâmetros e ajuste de thresholds. O processo teve como finalidade construir modelos preditivos robustos, interpretáveis e aderentes a cenários reais de concessão de crédito.
+
+<br>
 
 ## 🛠️ Principais Etapas do Projeto
 
@@ -101,6 +107,8 @@ Métricas utilizadas:
 - ROC-AUC
 - PR-AUC
 
+<br>
+
 ## 📈 Principais Resultados
 
 Após os experimentos realizados, os modelos LightGBM e SVC apresentaram os melhores resultados gerais utilizando a base reduzida por correlação de Pearson.
@@ -114,6 +122,7 @@ O modelo LightGBM demonstrou maior equilíbrio entre:
 
 Além disso, a análise de threshold tuning evidenciou a importância do trade-off entre Recall e Precision em cenários reais de risco de crédito.
 
+<br>
 
 ## 💰 Avaliação de Custo de Decisão
 
@@ -129,11 +138,15 @@ Foi utilizada uma relação hipotética de custo:
 
 Essa abordagem busca simular cenários reais de risco de crédito, nos quais aprovar clientes inadimplentes tende a gerar perdas significativamente maiores do que rejeitar clientes potencialmente adimplentes.
 
+<br>
+
 ## 🚀 Possíveis Melhorias Futuras
 
 Como oportunidades futuras de evolução, o projeto pode ser aprimorado com novas abordagens de modelagem, estratégias adicionais de avaliação e melhorias relacionadas ao contexto de negócio e operacionalização dos modelos.
 
 Além disso, por se tratar de um problema complexo e amplamente explorado na área de risco de crédito, observações, sugestões e contribuições dos leitores e profissionais da área podem agregar novas perspectivas, auxiliar na identificação de pontos de melhoria e contribuir para a evolução contínua da solução proposta.
+
+<br>
 
 ## 📚 Aprendizados
 
