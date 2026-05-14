@@ -129,6 +129,12 @@ Foi utilizada uma relação hipotética de custo:
 
 Essa abordagem busca simular cenários reais de risco de crédito, nos quais aprovar clientes inadimplentes tende a gerar perdas significativamente maiores do que rejeitar clientes potencialmente adimplentes.
 
+## 🚀 Possíveis Melhorias Futuras
+
+Como oportunidades futuras de evolução, o projeto pode ser aprimorado com novas abordagens de modelagem, estratégias adicionais de avaliação e melhorias relacionadas ao contexto de negócio e operacionalização dos modelos.
+
+Além disso, por se tratar de um problema complexo e amplamente explorado na área de risco de crédito, observações, sugestões e contribuições dos leitores e profissionais da área podem agregar novas perspectivas, auxiliar na identificação de pontos de melhoria e contribuir para a evolução contínua da solução proposta.
+
 ## 📚 Aprendizados
 
 Este projeto proporcionou aprofundamento prático em:
@@ -145,3 +151,6 @@ Este projeto proporcionou aprofundamento prático em:
 
 Mais do que maximizar métricas, o projeto contribuiu para desenvolver uma visão mais crítica sobre equilíbrio entre desempenho estatístico, viabilidade operacional e impacto de negócio em aplicações reais de Ciência de Dados.
 
+<br>
+
+> [Veja o notebook para detalhes da análise.](https://github.com/Gleynner/Analise_de_risco_de_credito/blob/main/Analise_Risco_de_Credito.ipynb)
