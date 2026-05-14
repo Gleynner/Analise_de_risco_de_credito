@@ -144,6 +144,25 @@ Essa abordagem busca simular cenários reais de risco de crédito, nos quais apr
 
 <br>
 
+## 📊 Tecnologias Utilizadas
+
+Linguagem
+- Python
+
+Bibliotecas
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- LightGBM
+- XGBoost
+- CatBoost
+- Optuna
+- Imbalanced-learn
+
+<br>
+
 ## 🚀 Possíveis Melhorias Futuras
 
 Como oportunidades futuras de evolução, o projeto pode ser aprimorado com novas abordagens de modelagem, estratégias adicionais de avaliação e melhorias relacionadas ao contexto de negócio e operacionalização dos modelos.
