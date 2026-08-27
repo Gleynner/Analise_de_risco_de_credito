@@ -28,7 +28,7 @@ Após comparar 13 algoritmos de classificação em três estratégias de seleç�
 | **LightGBM** | Padrão | 0,84 | 0,22 | 0,211 | **6.045** ✅ |
 | LightGBM | Ajustado | 0,91 | 0,20 | 0,193 | 6.140 |
 | SVC | Padrão | 0,85 | 0,20 | 0,195 | 6.509 |
-| SVC | Ajustado | 0,89 | 0,18 | — | 6.743 |
+| SVC | Ajustado | 0,89 | 0,18 | 0,18 | 6.743 |
 
 *\*Custo hipotético de decisão, simulando um cenário realista em que aprovar um cliente inadimplente (Falso Negativo) custa 10x mais do que rejeitar um bom cliente (Falso Positivo). Menor custo = melhor resultado operacional.*
 
