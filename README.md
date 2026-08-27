@@ -2,6 +2,9 @@
 <h1 align="center">
    💳 Análise de Risco de Crédito
 
+ </h1>
+
+< align="center">
   `Python` `Scikit-learn` `LightGBM` `SVC` `Optuna` `Imbalanced-learn` `Feature Engineering (WOE/IV)`
 </h1>
 
