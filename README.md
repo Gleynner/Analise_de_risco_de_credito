@@ -4,189 +4,62 @@
   <img src="assets/Score-de-credito.png" width="670"/>
 </p>
 
+`Python` `Scikit-learn` `LightGBM` `SVC` `Optuna` `Imbalanced-learn` `Feature Engineering (WOE/IV)`
 
-<br>
 
 ## 📌 Visão Geral
 
-A análise de risco de crédito desempenha papel fundamental no setor financeiro, auxiliando instituições na tomada de decisão sobre concessão de crédito e mitigação de perdas associadas à inadimplência. Em um cenário econômico desafiador, marcado pelo aumento do endividamento das famílias brasileiras, restrição de crédito e elevação do risco de inadimplência, torna-se cada vez mais importante o desenvolvimento de soluções analíticas capazes de identificar clientes com maior probabilidade de default de forma eficiente e operacionalmente viável.
-
-Nesse contexto, instituições financeiras e fintechs buscam utilizar modelos estatísticos e técnicas de Machine Learning para apoiar decisões mais assertivas de concessão de crédito, reduzindo perdas financeiras, preservando a qualidade da carteira e equilibrando crescimento sustentável com controle de risco.
-
-A capacidade de antecipar comportamentos de inadimplência tornou-se um diferencial estratégico, permitindo que as instituições ajustem políticas de crédito, limites, taxas e estratégias de mitigação de risco de acordo com o perfil de cada cliente.
-
-<br>
-
-## 🎯 Objetivo do Projeto
-
-O objetivo deste projeto é desenvolver um modelo preditivo de Machine Learning capaz de prever a probabilidade de inadimplência (default) de clientes a partir de informações financeiras, cadastrais e comportamentais.
-
-Para alcançar o objetivo proposto, foi desenvolvido um projeto completo de análise de risco de crédito, contemplando etapas de análise exploratória, tratamento e preparação dos dados, engenharia de atributos, seleção de variáveis, balanceamento de classes, otimização de hiperparâmetros e ajuste de thresholds. O processo teve como finalidade construir modelos preditivos robustos, interpretáveis e aderentes a cenários reais de concessão de crédito.
-
-<br>
-
-## 🛠️ Principais Etapas do Projeto
+Projeto de Ciência de Dados para prever inadimplência de clientes, utilizando dados de uma competição promovida pela Nubank. O pipeline cobre todo o ciclo: análise exploratória, tratamento de dados, engenharia de atributos (incluindo Weight of Evidence e Information Value), seleção de variáveis, modelagem comparativa, otimização de hiperparâmetros com Optuna, ajuste de threshold e análise de custo de decisão orientada a negócio — com cuidado explícito na prevenção de data leakage e separação adequada entre treino e teste.
 
 
-1. Análise Exploratória de Dados (EDA)
+## 🎯 Objetivo
 
-Análise exploratória voltada à compreensão do comportamento das variáveis, padrões associados à inadimplência, correlações e distribuição dos dados.
+Desenvolver um modelo preditivo capaz de identificar clientes com maior probabilidade de inadimplência (default), equilibrando desempenho estatístico, estabilidade e viabilidade operacional para apoiar decisões de concessão de crédito.
 
-2. Divisão dos dados em conjuntos de treino e teste
 
-Separação da base em conjuntos de treino e teste para garantir avaliação adequada da capacidade de generalização dos modelos.
+## 📈 Resultados Principais
 
-3. Engenharia de Atributos (Feature Engineering)
+Após comparar 13 algoritmos de classificação em três estratégias de seleção de variáveis, **LightGBM** e **SVC** (com a base reduzida por correlação de Pearson) apresentaram o melhor desempenho geral no conjunto de teste:
 
-Criação de novas variáveis derivadas com objetivo de aumentar a capacidade preditiva dos modelos.
+| Modelo | Threshold | Recall (Inadimplente) | Precision (Inadimplente) | PR-AUC | Custo de Decisão* |
+|---|---|:---:|:---:|:---:|:---:|
+| **LightGBM** | Padrão | 0,84 | 0,22 | 0,211 | **6.045** ✅ |
+| LightGBM | Ajustado | 0,91 | 0,20 | 0,193 | 6.140 |
+| SVC | Padrão | 0,85 | 0,20 | 0,195 | 6.509 |
+| SVC | Ajustado | 0,89 | 0,18 | — | 6.743 |
 
-Principais técnicas utilizadas:
+*\*Custo hipotético de decisão, simulando um cenário realista em que aprovar um cliente inadimplente (Falso Negativo) custa 10x mais do que rejeitar um bom cliente (Falso Positivo). Menor custo = melhor resultado operacional.*
 
-- Binning de variáveis
-- Weight of Evidence (WOE)
-- Information Value (IV)
-- Clusterização geográfica
-- Variáveis agregadas
-- Criação de variáveis comportamentais
+✅ **Melhor resultado geral:** LightGBM com threshold padrão — menor custo operacional total entre todos os cenários avaliados, mesmo sem otimização agressiva do limiar de decisão. O ajuste de threshold aumentou o recall, mas à custa de mais falsos positivos e maior custo total — um trade-off relevante para decisões de negócio em risco de crédito.
 
-4. Data Cleaning e tratamento lógico dos dados
 
-Tratamento de inconsistências, ajuste de tipos de variáveis, tratamento de valores ausentes e outliers.
+## 🛠️ Etapas do Projeto
 
-5. Pré-processamento dos dados
+1. **Análise Exploratória de Dados** — investigação de padrões de inadimplência, correlações e distribuição das variáveis.
+2. **Divisão treino/teste** — realizada antes de qualquer transformação, para evitar vazamento de dados.
+3. **Data Cleaning** — tratamento de inconsistências, tipos de dados, valores ausentes e outliers (incluindo winsorização).
+4. **Feature Engineering** — binning, Weight of Evidence (WOE), Information Value (IV), clusterização geográfica e variáveis derivadas.
+5. **Pré-processamento** — `StandardScaler`, `PowerTransformer` (Yeo-Johnson), `OneHotEncoder` e `ColumnTransformer` dentro de Pipelines do scikit-learn.
+6. **Seleção de Variáveis** — comparação entre base completa, redução por correlação de Pearson e `SelectKBest`.
+7. **Modelagem** — 13 algoritmos avaliados (Logistic Regression, Naive Bayes, KNN, SVC, árvores, ensembles, XGBoost, LightGBM, CatBoost) com validação cruzada estratificada.
+8. **Otimização e Threshold Tuning** — tuning de hiperparâmetros com Optuna e ajuste do limiar de decisão para os modelos finalistas (LightGBM e SVC).
+9. **Análise de Custo de Decisão** — simulação de impacto financeiro de Falsos Positivos vs. Falsos Negativos.
 
-Aplicação de técnicas de transformação matemática e preparação dos dados para os algoritmos de Machine Learning.
+> 📓 [Veja o notebook completo para todos os detalhes técnicos](https://github.com/Gleynner/Analise_de_risco_de_credito/blob/main/Analise_Risco_de_Credito.ipynb)
 
-Técnicas utilizadas:
 
-- StandardScaler
-- PowerTransformer (Yeo-Johnson)
-- OneHotEncoder
-- ColumnTransformer
-- Pipelines do scikit-learn
+## 📊 Tecnologias
 
-6. Seleção de variáveis e construção dos conjuntos de modelagem
+`Python` · `Pandas` · `NumPy` · `Matplotlib` · `Seaborn` · `Scikit-learn` · `LightGBM` · `XGBoost` · `CatBoost` · `Optuna` · `Imbalanced-learn`
 
-Avaliação comparativa entre diferentes estratégias de seleção de variáveis.
 
-Conjuntos utilizados:
+## 🚀 Próximos Passos
 
-- Base completa
-- Base reduzida por correlação de Pearson
-- Base reduzida com SelectKBest
+- Explorar estratégias adicionais de balanceamento além do SMOTE, que não apresentou ganhos consistentes neste problema.
+- Avaliar modelos de custo-sensível (*cost-sensitive learning*) diretamente na etapa de treinamento.
+- Testar a operacionalização do modelo (ex.: API de scoring) para simular uso em produção.
 
-O objetivo desta etapa foi reduzir dimensionalidade, remover redundâncias e avaliar impacto das variáveis sobre desempenho, estabilidade e interpretabilidade dos modelos.
+## 💡 Principal Aprendizado
 
-7. Modelagem
+Mais do que maximizar métricas, o projeto reforçou que o equilíbrio entre desempenho estatístico, viabilidade operacional e impacto de negócio é o que realmente define a qualidade de um modelo de risco de crédito — especialmente ao avaliar o trade-off entre Recall e Precision sob a ótica de custo real de decisão.
 
-Treinamento e avaliação comparativa de diferentes algoritmos de classificação em cenário de dados desbalanceados.
-
-Modelos avaliados:
-- Logistic Regression
-- Gaussian Naive Bayes
-- Bernoulli Naive Bayes
-- KNN
-- SVC
-- Decision Tree
-- Random Forest
-- Gradient Boosting
-- Extra Trees
-- Bagging
-- XGBoost
-- LightGBM
-- CatBoost
-
-Estratégias aplicadas: 
-
-- Validação cruzada estratificada
-- Class weighting
-- SMOTE
-- Métricas voltadas à classe minoritária
-- Otimização de hiperparâmetros com Optuna
-- Threshold tuning
-
-Métricas utilizadas:
-- Recall
-- Precision
-- ROC-AUC
-- PR-AUC
-
-<br>
-
-## 📈 Principais Resultados
-
-Após os experimentos realizados, os modelos LightGBM e SVC apresentaram os melhores resultados gerais utilizando a base reduzida por correlação de Pearson.
-
-O modelo LightGBM demonstrou maior equilíbrio entre:
-
-- Capacidade de detecção da inadimplência
-- Estabilidade preditiva
-- Controle de falsos positivos
-- Eficiência operacional
-
-Além disso, a análise de threshold tuning evidenciou a importância do trade-off entre Recall e Precision em cenários reais de risco de crédito.
-
-<br>
-
-## 💰 Avaliação de Custo de Decisão
-
-O projeto também incorporou análise de custo de decisão considerando diferentes impactos operacionais entre:
-
-- Falsos Positivos (FP)
-- Falsos Negativos (FN)
-
-Foi utilizada uma relação hipotética de custo:
-
-- FP = 1
-- FN = 10
-
-Essa abordagem busca simular cenários reais de risco de crédito, nos quais aprovar clientes inadimplentes tende a gerar perdas significativamente maiores do que rejeitar clientes potencialmente adimplentes.
-
-<br>
-
-## 📊 Tecnologias Utilizadas
-
-Linguagem
-- Python
-
-Bibliotecas
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- LightGBM
-- XGBoost
-- CatBoost
-- Optuna
-- Imbalanced-learn
-
-<br>
-
-## 🚀 Possíveis Melhorias Futuras
-
-Como oportunidades futuras de evolução, o projeto pode ser aprimorado com novas abordagens de modelagem, estratégias adicionais de avaliação e melhorias relacionadas ao contexto de negócio e operacionalização dos modelos.
-
-Além disso, por se tratar de um problema complexo e amplamente explorado na área de risco de crédito, observações, sugestões e contribuições dos leitores e profissionais da área podem agregar novas perspectivas, auxiliar na identificação de pontos de melhoria e contribuir para a evolução contínua da solução proposta.
-
-<br>
-
-## 📚 Aprendizados
-
-Este projeto proporcionou aprofundamento prático em:
-
-- Análise exploratória de dados
-- Engenharia de atributos
-- Pré-processamento de dados
-- Modelagem supervisionada
-- Dados desbalanceados
-- Otimização de hiperparâmetros
-- Ajuste de threshold
-- Avaliação de métricas em risco de crédito
-- Interpretação de trade-offs operacionais
-
-Mais do que maximizar métricas, o projeto contribuiu para desenvolver uma visão mais crítica sobre equilíbrio entre desempenho estatístico, viabilidade operacional e impacto de negócio em aplicações reais de Ciência de Dados.
-
-<br>
-
-> [Veja o notebook para detalhes da análise.](https://github.com/Gleynner/Analise_de_risco_de_credito/blob/main/Analise_Risco_de_Credito.ipynb)
