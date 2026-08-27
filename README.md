@@ -34,6 +34,10 @@ Após comparar 13 algoritmos de classificação em três estratégias de seleç�
 
 ✅ **Melhor resultado geral:** LightGBM com threshold padrão — menor custo operacional total entre todos os cenários avaliados, mesmo sem otimização agressiva do limiar de decisão. O ajuste de threshold aumentou o recall, mas à custa de mais falsos positivos e maior custo total — um trade-off relevante para decisões de negócio em risco de crédito.
 
+O uso de SMOTE foi avaliado, mas descartado por não apresentar ganhos consistentes e 
+pelo custo computacional elevado — a versão final utiliza apenas ponderação de classes 
+(*class weights*).
+
 
 ## 🛠️ Etapas do Projeto
 
