@@ -9,6 +9,11 @@
 </>
 
 <p align="center">
+  <code>Python</code> <code>Scikit-learn</code> <code>LightGBM</code> <code>SVC</code> <code>Optuna</code> <code>Imbalanced-learn</code> <code>Feature Engineering (WOE/IV)</code>
+</p>
+
+
+<p align="center">
   <img src="assets/Score-de-credito.png" width="670"/>
 </p>
 
