@@ -6,7 +6,7 @@
 
 <p align="center">
   `Python` `Scikit-learn` `LightGBM` `SVC` `Optuna` `Imbalanced-learn` `Feature Engineering (WOE/IV)`
-</h1>
+</p>
 
 <p align="center">
   <img src="assets/Score-de-credito.png" width="670"/>
